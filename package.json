@@ -1,0 +1,27 @@
+{
+  "name": "ecommerce-restful-api",
+  "version": "1.0.0",
+  "description": "RESTful API for S2I Node.js project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kilar95/eCommerce-RESTful-API.git"
+  },
+  "author": "Ilaria Bertoldi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kilar95/eCommerce-RESTful-API/issues"
+  },
+  "homepage": "https://github.com/kilar95/eCommerce-RESTful-API#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.2",
+    "nodemon": "^2.0.21"
+  }
+}
