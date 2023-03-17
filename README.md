@@ -60,7 +60,7 @@
 This project was created for the start2impact Node.js course. <br>
 This RESTful API provides data about a fictional e-Commerce. You can view, create and update entries about:
 
-<li>Products sold by the e-Commerce</li>
+<li>Products</li>
 <li>Users</li>
 <li>Orders</li>
 
@@ -128,9 +128,9 @@ Create a product with a <str>POST</str> request at:
 
 ```sh
 {
-  "name": "string",
-  "price": number,
-  "inStock": boolean
+  "name": "String",
+  "price": Number,
+  "inStock": Boolean
 }
 ```
 
@@ -143,7 +143,7 @@ Get the details about a specific product with a <str>GET</str> request at:
 ```
 
 where productID is a valid MongoDB ID of one of the products in the DB.
-At the same andpoint you can <str>PATCH</str> and <str>DELETE</str> any product.
+At the same endpoint you can <str>PATCH</str> and <str>DELETE</str> any product.
 
 ### Users
 
@@ -161,9 +161,9 @@ Create a user with a <str>POST</str> request at:
 
 ```sh
 {
-  "name": "string"
-  "surname": "string",
-  "email": "string"
+  "name": "String"
+  "surname": "String",
+  "email": "String"
 }
 ```
 
@@ -176,7 +176,7 @@ Get the details about a specific user with a <str>GET</str> request at:
 ```
 
 where userID is a valid MongoDB ID of one of the users in the DB.
-At the same andpoint you can <str>PATCH</str> and <str>DELETE</str> any user.
+At the same endpoint you can <str>PATCH</str> and <str>DELETE</str> any user.
 
 ### Orders
 
@@ -186,7 +186,7 @@ Get the full list of orders with a <str>GET</str> request at:
 /orders
 ```
 
-Create an order by the user specified in the url with a <str>POST</str> request at:
+Create an order from the user specified in the url with a <str>POST</str> request at:
 
 ```sh
 /orders/:userID
@@ -200,7 +200,6 @@ Create an order by the user specified in the url with a <str>POST</str> request 
 ```
 
 In the req.body it is required to specify the products that you wish to order.
-
 At the same endpoint you can get all the orders from the specified user with a <str>GET</str> request.
 
 Get the details about a specific order with a <str>GET</str> request at:
@@ -226,10 +225,20 @@ Finally, you can filter the orders by creation Date and by Products using a SEAR
 The parameters to filter the results are:
 
 <ul>
-    <li> startDate: valid ISO start date (e.g. 2023-03-16), returns orders created after the specified date </li>
-    <li> endDate: valid ISO start date (e.g. 2023-03-18), returns orders created before the specified date  </li>
-    <li> productID: valid MongoDB product ID, which allows you to search for all the orders of the corresponding product </li>
+    <li> **startDate**: valid ISO start date (e.g. 2023-03-16), returns orders created after the specified date </li>
+    <li> **endDate**: valid ISO start date (e.g. 2023-03-18), returns orders created before the specified date  </li>
+    <li> **productID**: valid MongoDB product ID, which allows you to search for all the orders of the corresponding product </li>
 </ul>
+
+examples:
+
+```sh
+/orders/query/filter?productID=641388b52d4a5f1039107eb2&startDate=2023-03-17&endDate=2023-03-17
+```
+
+```sh
+/orders/query/filter?productID=641388b52d4a5f1039107eb
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
