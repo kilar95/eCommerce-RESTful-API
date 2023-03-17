@@ -16,10 +16,9 @@
     <img src="https://user-images.githubusercontent.com/104167965/214048722-6852a762-0ab5-47d9-9497-980075d4f4c9.svg" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Meditation App</h3>
+  <h3 align="center">RESTful API</h3>
 
   <p align="center">
-    Breathe and relax!
     <br />
     <a href="https://github.com/kilar95/eCommerce-RESTful-API"><strong>Explore the docs »</strong></a>
     <br />
@@ -64,6 +63,7 @@ This RESTful API provides data about a fictional e-Commerce. You can view, creat
 <li>Users</li>
 <li>Orders</li>
 
+<br>
 The endpoints to perform CRUD operations are listed in the upcoming section of this guide.
 
 This project was created using Node.js and MongoDB.
