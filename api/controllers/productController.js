@@ -40,6 +40,7 @@ const getProductDetails = async (req, res) => {
 
     try {
         const product = await Product.findById(id)
+        console.log(product);
         if (product) {
             res.status(200).json(product)
         } else {
@@ -57,15 +58,15 @@ const updateProduct = async (req, res) => {
     const id = req.params.productID
 
     try {
-        const product = await Product.findById(id)
-        if (!product) {
-            return res.status(404).json("Product not found")
-        } else {
-            await product.updateOne({ $set: req.body })
+        const productUpdated = await Product.findByIdAndUpdate({ _id: id }, { $set: req.body }, { returnDocument: 'after' })
+        console.log(productUpdated);
+        if (productUpdated) {
             res.status(200).json({
                 message: "Product Updated",
-                updatedProduct: product
+                updatedProduct: productUpdated
             })
+        } else {
+            res.status(404).json("Product not found")
         }
     } catch (error) {
         res.status(500).json({

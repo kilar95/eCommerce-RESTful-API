@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const userSchema = mongoose.Schema({
+const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -13,7 +13,10 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    pendingOrders: Number
+    pendingOrders: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Order'
+    }]
 })
 
 const User = new mongoose.model('User', userSchema)

@@ -1,13 +1,14 @@
 const express = require('express')
-const app = express()
-const port = process.env.PORT || 3000
 const mongoose = require('mongoose')
 const productsRoute = require('./api/routes/products')
 const ordersRoute = require('./api/routes/orders')
 const usersRoute = require('./api/routes/users')
 const cors = require('cors')
 const dotenv = require('dotenv')
+const mongoSanitize = require('express-mongo-sanitize')
 
+const app = express()
+const port = process.env.PORT || 3000
 
 // parse form data
 app.use(express.urlencoded({ extended: false }))
@@ -15,7 +16,8 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 // cors erros
 app.use(cors({ origin: '*' }))
-
+// sanitize inputs
+app.use(mongoSanitize())
 
 // conencting the database
 dotenv.config()
@@ -30,12 +32,12 @@ mongoose
 app.get('/', (req, res) => {
     res.status(200)
         .send(`
-            <h1>Welcome to my RESTful API</h1>
-            <h2>Routes</h2>
+            <h1>Welcome to my very first RESTful API</h1>
+            <h2>Main Routes</h2>
             <ul>
-            <li><a href="localhost:${port}/products"> All Products </a></li>
-            <li><a href="localhost:${port}/orders"> Orders </a></li>
-            <li><a href="localhost:${port}/users"> Users </a></li>
+            <li><h3>All Products:</h3> localhost:${port}/products</li>
+            <li><h3>Users:</h3> localhost:${port}/users</li>
+            <li><h3>Orders:</h3> localhost:${port}/orders</li>
         `)
 })
 

@@ -1,7 +1,7 @@
 const User = require('../models/userModel')
 const mongoose = require('mongoose')
 
-// get all products
+// get all users
 const getUsers = async (req, res) => {
     try {
         const allUsers = await User.find()
@@ -17,7 +17,7 @@ const getUsers = async (req, res) => {
     }
 }
 
-// create new product
+// create new user
 const createUser = async (req, res) => {
     const newUser = new User(req.body)
 
@@ -34,7 +34,7 @@ const createUser = async (req, res) => {
     }
 }
 
-// get info about a specific product
+// get info about a specific user
 const getUserDetails = async (req, res) => {
     const id = req.params.userID
 
@@ -52,20 +52,19 @@ const getUserDetails = async (req, res) => {
     }
 }
 
-// update product
+// update user
 const updateUser = async (req, res) => {
     const id = req.params.userID
 
     try {
-        const user = await User.findById(id)
-        if (!user) {
-            return res.status(404).json("User not found")
-        } else {
-            await user.updateOne({ $set: req.body })
+        const userUpdated = await User.findByIdAndUpdate({ _id: id }, { $set: req.body }, { returnDocument: 'after' })
+        if (userUpdated) {
             res.status(200).json({
                 message: "User Updated",
-                updatedUser: user
+                updatedUser: userUpdated
             })
+        } else {
+            res.status(404).json("User not found")
         }
     } catch (error) {
         res.status(500).json({
@@ -74,7 +73,7 @@ const updateUser = async (req, res) => {
     }
 }
 
-// delete product 
+// delete user 
 const deleteUser = async (req, res) => {
     const id = req.params.userID
 
