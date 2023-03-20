@@ -40,7 +40,6 @@ const getProductDetails = async (req, res) => {
 
     try {
         const product = await Product.findById(id)
-        console.log(product);
         if (product) {
             res.status(200).json(product)
         } else {
@@ -59,7 +58,6 @@ const updateProduct = async (req, res) => {
 
     try {
         const productUpdated = await Product.findByIdAndUpdate({ _id: id }, { $set: req.body }, { returnDocument: 'after' })
-        console.log(productUpdated);
         if (productUpdated) {
             res.status(200).json({
                 message: "Product Updated",

@@ -1,14 +1,13 @@
 const express = require('express')
-const mongoose = require('mongoose')
 const productsRoute = require('./api/routes/products')
 const ordersRoute = require('./api/routes/orders')
 const usersRoute = require('./api/routes/users')
-const cors = require('cors')
-const dotenv = require('dotenv')
 const mongoSanitize = require('express-mongo-sanitize')
+const cors = require('cors')
+const port = process.env.PORT || 3000
+
 
 const app = express()
-const port = process.env.PORT || 3000
 
 // parse form data
 app.use(express.urlencoded({ extended: false }))
@@ -18,15 +17,6 @@ app.use(express.json())
 app.use(cors({ origin: '*' }))
 // sanitize inputs
 app.use(mongoSanitize())
-
-// conencting the database
-dotenv.config()
-mongoose
-    .connect(process.env.ATLAS_URI)
-    .then(() => app.listen(port, () => {
-        console.log(`Server running on port ${port}`);
-    }))
-    .catch((err) => console.log(err))
 
 
 app.get('/', (req, res) => {
@@ -61,3 +51,5 @@ app.use((err, req, res, next) => {
         }
     })
 })
+
+module.exports = app 

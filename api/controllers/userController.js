@@ -24,8 +24,8 @@ const createUser = async (req, res) => {
     try {
         await newUser.save()
         res.status(200).json({
-            message: "Product successfully created",
-            cratedUser: newUser
+            message: "User successfully created",
+            createdUser: newUser
         })
     } catch (error) {
         res.status(500).json({
